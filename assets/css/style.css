@@ -1,0 +1,127 @@
+:root {
+  --c-drk: #212529;
+  --c-mid: #bbbcbe;
+  --c-lgt: #f8f9fa;
+
+  --spc-xl: 3rem
+  --spacer-l: 2.25rem;
+  --spc-m: 1rem;
+  --spc-s: .75rem;
+
+}
+
+*,
+*::before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Asap", sans-serif;
+
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+
+
+}
+
+header {
+  background-color: var(--c-drk);
+  color: var(--c-lgt);
+  padding: var(--spc-m);
+}
+
+main {
+  margin-bottom: auto;
+}
+
+footer {
+  background-color: var(--c-mid);
+  color: var(--c-drk);
+  padding: var(--spc-s);
+  text-align: center;
+}
+
+/* ==================================================================================== */
+/* MAIN HTML ELEMENTS */
+/* ==================================================================================== */
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  margin: 0;
+}
+
+/* ==================================================================================== */
+/* UTILITY CLASSES */
+/* ==================================================================================== */
+
+
+.container {
+  width: 80%;
+  max-width: 996px;
+  margin: 0 auto;
+}
+
+.d-flex {
+  display: flex;
+}
+
+/* ==================================================================================== */
+/* CUSTOM CLASSES */
+/* ==================================================================================== */
+
+.hero__image {
+  /* border: 4px solid olive; */
+  text-align: center;
+}
+
+.hero__image img {
+  /* border: 4px solid orange; */
+  text-align: center;
+}
+
+.hero__menu {
+  /* border: 4px solid orange; */
+  width: 50%;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.hero__menu select {
+  width: 100%;
+}
+
+.hero__title {
+  /* border: 4px solid teal; */
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.countries__list {
+  /* border: 4px solid palevioletred; */
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0;
+  list-style: none;
+
+}
+
+.country {
+  width: 30%;
+  border: 1px solid var(--c-mid);
+  border-radius: 4px;
+  padding: .5em 1em;
+  margin: .5em 0;
+}
+

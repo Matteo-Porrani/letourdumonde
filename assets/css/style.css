@@ -1,9 +1,11 @@
 :root {
+  --bck: 0px;
+
   --c-drk: #212529;
   --c-mid: #bbbcbe;
   --c-lgt: #f8f9fa;
 
-  --spc-xl: 3rem
+  --spc-xl: 3rem;
   --spacer-l: 2.25rem;
   --spc-m: 1rem;
   --spc-s: .75rem;
@@ -26,14 +28,14 @@ body {
   flex-direction: column;
   justify-content: space-between;
 
-
-
+  overflow-x: hidden;
 }
 
 header {
+  border: var(--bck) solid orange;
   background-color: var(--c-drk);
   color: var(--c-lgt);
-  padding: var(--spc-m);
+  padding: var(--spc-s);
 }
 
 main {
@@ -51,11 +53,27 @@ footer {
 /* MAIN HTML ELEMENTS */
 /* ==================================================================================== */
 
+section {
+  border: var(--bck) solid steelblue;  
+}
+
 h1,
 h2,
 h3 {
   margin: 0;
   padding: 0;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.2rem;
 }
 
 ul {
@@ -66,8 +84,8 @@ ul {
 /* UTILITY CLASSES */
 /* ==================================================================================== */
 
-
 .container {
+  border: var(--bck) solid limegreen;
   width: 80%;
   max-width: 996px;
   margin: 0 auto;
@@ -78,16 +96,65 @@ ul {
 }
 
 /* ==================================================================================== */
+/* DESIGN ELEMENTS */
+/* ==================================================================================== */
+
+.btn {
+  padding: .5em 1em;
+  border: 1px solid var(--c-drk);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1.1rem;
+  background: transparent;
+}
+
+.btn--primary {
+  background: var(--c-mid);
+  color: var(--c-lgt);
+}
+
+.btn:hover {
+  opacity: .5;
+}
+
+
+/* ==================================================================================== */
+/* DISPLAY STRUCTURE */
+/* ==================================================================================== */
+
+.display {
+  border: var(--bck) solid magenta;
+  position: relative;
+}
+
+.page1 {
+  background: var(--c-lgt);
+}
+
+.page2 {
+  position: absolute;
+  inset: 0 0 0 0;
+  background: #bae67e;
+  padding: 2rem;
+
+  transition: transform .6s ease-in-out;
+}
+
+.page2.hidden {
+  transform: translateX(100vw);
+}
+
+/* ==================================================================================== */
 /* CUSTOM CLASSES */
 /* ==================================================================================== */
 
 .hero__image {
-  /* border: 4px solid olive; */
+  border: var(--bck) solid teal;
   text-align: center;
 }
 
 .hero__image img {
-  /* border: 4px solid orange; */
+  border: var(--bck) solid orangered;
   text-align: center;
 }
 
@@ -108,17 +175,17 @@ ul {
   text-align: center;
 }
 
-.countries__list {
+.country__list {
   /* border: 4px solid palevioletred; */
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
   padding: 0;
   list-style: none;
-
+  font-size: .875rem;
 }
 
-.country {
+.country__link {
   width: 30%;
   border: 1px solid var(--c-mid);
   border-radius: 4px;

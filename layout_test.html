@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layout Test</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: monospace;
+      box-sizing: border-box;
+    }
+
+    h1,
+    p {
+      margin: 2em 0;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 80ch;
+      margin: 0 auto;
+      text-align: justify;
+    }
+    header {
+      height: 8vh;
+    }
+
+    header * {
+      margin: 0;
+      padding: 0;
+    }
+    .wrapper {
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .page {
+      padding: 5rem;
+      height: 92vh;
+      transition: all .6s ease-in-out;
+    }
+
+    .page1 {
+      background: #d7dce2;
+    }
+
+    .page2 {
+      position: absolute;
+      inset: 0 0 0 0;
+      background: #6679a4;
+    }
+
+    .out {
+      transform: translateX(100vw)
+    }
+
+    h2 {
+      margin-top: 2rem;
+      display: inline-block;
+      font-size: 7.5rem;
+      /* background: steelblue; */
+      width: fit-content;
+    }
+
+    .cursor {
+      display: inline-block;
+      background: hsl(356, 80%, 58%);
+      height: 120px;
+      width: 12px;
+    }
+
+    .pulse {
+      animation: pulse 1.2s ease-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Le tour du monde</h1>
+  </header>
+
+  <div class="wrapper">
+    <div class="page page1">
+      <h1>Page 1</h1>
+      <button class="btn">Open / Close</button>
+
+      <br>
+      <br>
+      <br>
+      <br>
+
+      <h2 class="big-title"></h2>
+      <span class="cursor pulse"></span>
+
+    </div>
+
+    <div class="page page2 out">
+      <h1>Page 2</h1>
+      <button class="btn">Open / Close</button>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam laudantium enim odit suscipit et culpa sed sunt
+        dolore architecto. Repellendus, error? Cum suscipit quisquam dolore dolor iste dicta. Repellat quae mollitia
+        magnam doloremque ratione commodi, odio et ipsam impedit voluptatibus alias assumenda asperiores quisquam saepe
+        veritatis quas ducimus maxime cum vitae sapiente iste. Placeat vel doloremque mollitia dignissimos! Provident
+        iure veniam hic ipsam minima eum laboriosam fugiat voluptatem asperiores qui, soluta, ab facere eos officia
+        magni fugit praesentium nemo rerum dicta nesciunt eligendi magnam. Magni qui illo voluptatum dicta ex vitae vel
+        excepturi rem animi, at sit ut et culpa incidunt eos exercitationem molestiae reprehenderit officiis tempora
+        nihil quas blanditiis! Ullam maxime perferendis placeat commodi rerum accusantium provident similique, ipsum
+        alias quidem fugit dicta! Laborum earum dolorum reiciendis ipsam non nostrum eius et cumque, nesciunt iure ab
+        aspernatur eveniet fugiat repellat, deserunt repudiandae facilis exercitationem autem numquam consequuntur
+        pariatur praesentium tempore asperiores. Vel ipsam minima nemo pariatur ad blanditiis. Iste temporibus vero,
+        nobis praesentium accusantium sequi? Asperiores dignissimos laudantium distinctio, voluptates repudiandae
+        quibusdam, illo autem nisi tempora cupiditate est. Modi architecto necessitatibus quia corrupti, perferendis eos
+        eaque. Accusantium amet pariatur explicabo atque consequatur deserunt, laborum nam voluptatem perferendis error
+        laboriosam necessitatibus repellendus ab delectus ex iste. Voluptatibus, ullam quisquam numquam doloremque
+        libero ipsam error itaque atque exercitationem sint aliquam voluptatem dolorum quas quae dignissimos, officiis
+        corrupti non, maxime impedit accusamus maiores ea laboriosam? Esse magni vero inventore maiores iusto. Esse
+        dolores delectus sequi distinctio excepturi vero libero quia aperiam voluptates vitae reprehenderit, explicabo,
+        deleniti earum consequatur eaque. Magni omnis veritatis laborum voluptas dignissimos sed, voluptatum
+        accusantium, amet alias dolores id commodi molestias vitae fugit quam velit inventore sequi? Beatae, rerum
+        similique placeat voluptas ut quidem maxime, quo totam dolor itaque, ullam neque iusto asperiores necessitatibus
+        doloremque modi molestias magni quasi.</p>
+    </div>
+  </div>
+
+  <script>
+    const page2 = document.querySelector('.page2');
+    const buttons = document.querySelectorAll('.btn');
+
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+
+      page2.classList.toggle('out');
+
+    }));
+
+
+
+    const bigT = document.querySelector('.big-title');
+    const cursor = document.querySelector('.cursor');
+
+    // bigT.textContent = "abc";
+
+    let content = "";
+    const message = "JavaScript ES6";
+
+
+    setTimeout(function () {
+      writeMessage(message);
+    }, 1500);
+
+    function writeMessage(message) {
+      let i = 0;
+      cursor.classList.remove('pulse');
+      const timer = setInterval(function () {
+
+        if (i >= message.length) {
+          clearInterval(timer);
+          cursor.classList.add('pulse');
+          setTimeout(erase, 1000);
+          return;
+
+
+
+        }
+
+        content += message[i];
+        bigT.textContent = content;
+        i++
+
+      }, 150);
+    }
+
+
+    function erase() {
+
+      let backContent = bigT.textContent;
+      let backArr = backContent.split('');
+      cursor.classList.remove('pulse');
+
+      const timer = setInterval(function () {
+        console.log(backArr.length);
+
+        if (backArr.length > 0) {
+
+          bigT.textContent = backArr.join('');
+          backArr.pop();
+
+        } else {
+
+          bigT.textContent = backArr.join('');
+          backArr.pop();
+
+          console.log('erase done');
+          clearInterval(timer);
+          cursor.classList.add('pulse');
+          return;
+        }
+
+      }, 80);
+
+
+
+
+    }
+
+
+
+  </script>
+
+</body>
+
+</html>

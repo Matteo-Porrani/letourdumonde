@@ -37,7 +37,7 @@ function refreshContinent(continentName) {
     console.log(filteredData);
 
     if (filteredData) {
-      displayCountries(filteredData)
+      displayCountries(filteredData);
     }
 
   });
@@ -50,7 +50,11 @@ function displayCountries(countryList) {
   let countriesLis = [];
 
   countryList.forEach(country => {
-    const countryLi = `<li class="country">${country.translations.fra.common}</li>`;
+    const countryLi = `
+    <li class="country">
+      <a href="${country.maps.openStreetMaps}" target="_blank"
+      class="country__link">${country.translations.fra.common}</a>
+    </li>`;
     countriesLis.push(countryLi);
   });
 

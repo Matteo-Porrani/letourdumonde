@@ -84,10 +84,13 @@ ul {
 .hero__image {
   /* border: 4px solid olive; */
   text-align: center;
+  margin: 2rem 0;
 }
 
 .hero__image img {
   /* border: 4px solid orange; */
+  width: 100%;
+  max-width: 650px;
   text-align: center;
 }
 
@@ -126,3 +129,14 @@ ul {
   margin: .5em 0;
 }
 
+@media (max-width: 750px) {
+
+  .container {
+    width: 96%;
+  }
+
+  .country {
+    width: 100%;
+  }
+
+}

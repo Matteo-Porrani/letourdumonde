@@ -7,7 +7,7 @@ const page2 = document.querySelector('.page2');
 const continentsList = ['Europe', 'Afrique', 'Asie', 'Amériques', 'Océanie'];
 const continentsListEng = ['Europe', 'Africa', 'Asia', 'Americas', 'Oceania'];
 
-let currContinent ='Europe';
+let currContinent = 'Europe';
 const heroTitle = document.querySelector('.hero__title h2');
 const countriesUl = document.querySelector('.country__list');
 
@@ -35,26 +35,26 @@ document.hero__menu.continent.addEventListener('change', () => {
 function refreshContinent(continentName) {
 
   fetch('https://restcountries.com/v3.1/all')
-  .then(res => res.json())
-  .then(data => {
-    // console.log(data);
+    .then(res => res.json())
+    .then(data => {
+      // console.log(data);
 
-    filteredData = data.filter(country => {
-      if (country.region === continentName) {
-        return country;
+      filteredData = data.filter(country => {
+        if (country.region === continentName) {
+          return country;
+        }
+      })
+        .sort((a, b) => {
+          return (a.translations.fra.common > b.translations.fra.common) ? 1 : -1;
+        });
+
+      console.log(filteredData);
+
+      if (filteredData) {
+        displayCountries(filteredData);
       }
-    })
-    .sort((a, b) => {
-      return (a.translations.fra.common > b.translations.fra.common) ? 1 : -1;
+
     });
-
-    console.log(filteredData);
-
-    if (filteredData) {
-      displayCountries(filteredData);
-    }
-
-  });
 }
 
 
@@ -73,13 +73,13 @@ function displayCountries(countryList) {
   const countryLinks = document.querySelectorAll('.country__link');
   countryLinks.forEach(countryLink => {
 
-    countryLink.addEventListener('click', function(e) {
-  
+    countryLink.addEventListener('click', function (e) {
+
       getOneCountry(e.target.dataset.code.toLowerCase());
 
       window.scrollTo({
-        top: 0, 
-        left: 0, 
+        top: 0,
+        left: 0,
         behavior: 'smooth'
       });
 
@@ -124,31 +124,37 @@ function getOneCountry(countryCode) {
 
 
 function showOneCountry(country) {
-    countryName.textContent = country.translations.fra.common;
-    countryFlag.src = country.flags.png;
+  countryName.textContent = country.translations.fra.common;
+  countryFlag.src = country.flags.png;
 
-    countryCapital.textContent = country.capital;
-    countryArea.innerHTML = `${numberWithCommas(country.area)} km<sup>2</sup>`;
-    countryPopulation.textContent = numberWithCommas(country.population);
-    
-    const codeBorders = country.borders;
+  countryCapital.textContent = country.capital;
+  countryArea.innerHTML = `${numberWithCommas(country.area)} km<sup>2</sup>`;
+  countryPopulation.textContent = numberWithCommas(country.population);
 
-    const translatedBorders = codeBorders.map(code => {
+  let translatedBorders;
+  const codeBorders = country.borders;
+  if (codeBorders) {
+
+    translatedBorders = codeBorders.map(code => {
       return (filteredData.find(item => item.cca3 === code)).translations.fra.common;
     })
 
-    // console.log(translatedBorders);
+  } else {
+    translatedBorders = ['-'];
+  }
 
-    countryBorders.textContent = translatedBorders.join(', ');
+  // console.log(translatedBorders);
+
+  countryBorders.textContent = translatedBorders.join(', ');
 
 
 
 
 
-    countryCarSide.textContent = (country.car.side === 'right') ? 'droite' : 'gauche';
-    countryCodes.textContent = `${country.cca3} / ${country.ccn3}`;
+  countryCarSide.textContent = (country.car.side === 'right') ? 'droite' : 'gauche';
+  countryCodes.textContent = `${country.cca3} / ${country.ccn3}`;
 
-    countryCoatOfArms.src = country.coatOfArms.png;
+  countryCoatOfArms.src = country.coatOfArms.png || 'http://unsplash.it//300/300';
 }
 
 

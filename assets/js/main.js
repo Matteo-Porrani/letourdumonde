@@ -1,4 +1,7 @@
 
+let filteredData;
+
+const page1 = document.querySelector('.page1');
 const page2 = document.querySelector('.page2');
 
 const continentsList = ['Europe', 'Afrique', 'Asie', 'Amériques', 'Océanie'];
@@ -7,6 +10,15 @@ const continentsListEng = ['Europe', 'Africa', 'Asia', 'Americas', 'Oceania'];
 let currContinent ='Europe';
 const heroTitle = document.querySelector('.hero__title h2');
 const countriesUl = document.querySelector('.country__list');
+
+
+// T*T -- utilities
+
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+// T*T
 
 // gestionnaire d'événement <select>
 document.hero__menu.continent.addEventListener('change', () => {
@@ -27,7 +39,7 @@ function refreshContinent(continentName) {
   .then(data => {
     // console.log(data);
 
-    const filteredData = data.filter(country => {
+    filteredData = data.filter(country => {
       if (country.region === continentName) {
         return country;
       }
@@ -61,12 +73,18 @@ function displayCountries(countryList) {
   const countryLinks = document.querySelectorAll('.country__link');
   countryLinks.forEach(countryLink => {
 
-    console.log('adding listener on ' + countryLink);
     countryLink.addEventListener('click', function(e) {
   
       getOneCountry(e.target.dataset.code.toLowerCase());
 
+      window.scrollTo({
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth'
+      });
+
       page2.classList.remove('hidden');
+      page1.classList.add('out');
     });
   })
 
@@ -79,20 +97,17 @@ refreshContinent(currContinent);
 
 
 
-/*
-
-<h2 id="countryName"></h2>
-<p id="countryCapital"></h2>
-<p id="countrySurface"></h2>
-<p id="countryPopulation"></h2>
-
-*/
-
 const countryName = document.querySelector('#countryName');
+const countryFlag = document.querySelector('#countryFlag');
 const countryCapital = document.querySelector('#countryCapital');
 const countryArea = document.querySelector('#countryArea');
 const countryPopulation = document.querySelector('#countryPopulation');
+const countryBorders = document.querySelector('#countryBorders');
 
+const countryCarSide = document.querySelector('#countryCarSide');
+const countryCodes = document.querySelector('#countryCodes');
+
+const countryMap = document.querySelector('#countryMap');
 
 
 
@@ -102,19 +117,46 @@ function getOneCountry(countryCode) {
   fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`)
     .then(res => res.json())
     .then(data => {
-      if (data) {
-        showOneCountry(data[0]);
-      }
+      if (data) showOneCountry(data[0]);
     });
-
 }
 
 
 
 function showOneCountry(country) {
+    countryName.textContent = country.translations.fra.common;
+    countryFlag.src = country.flags.png;
 
-    countryName.textContent = country.name.common;
     countryCapital.textContent = country.capital;
-    countrySurface.textContent = country.area;
+    countryArea.innerHTML = `${numberWithCommas(country.area)} km<sup>2</sup>`;
+    countryPopulation.textContent = numberWithCommas(country.population);
+    
+    const codeBorders = country.borders;
 
-} 
+    const translatedBorders = codeBorders.map(code => {
+      return (filteredData.find(item => item.cca3 === code)).translations.fra.common;
+    })
+
+    // console.log(translatedBorders);
+
+    countryBorders.textContent = translatedBorders.join(', ');
+
+
+
+
+
+    countryCarSide.textContent = (country.car.side === 'right') ? 'droite' : 'gauche';
+    countryCodes.textContent = `${country.cca3} / ${country.ccn3}`;
+
+    countryCoatOfArms.src = country.coatOfArms.png;
+}
+
+
+
+const backButton = document.querySelector('#backButton');
+
+backButton.addEventListener('click', () => {
+  page1.classList.remove('out');
+  page2.classList.add('hidden');
+});
+

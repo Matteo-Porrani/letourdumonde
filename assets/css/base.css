@@ -1,0 +1,133 @@
+:root {
+  --bck: 0px;
+
+  --c-drk: #212529;
+  --c-mid: #bbbcbe;
+  --c-lgt: #f8f9fa;
+
+  --spc-xl: 3rem;
+  --spacer-l: 2.25rem;
+  --spc-m: 1rem;
+  --spc-s: .75rem;
+
+}
+
+@font-face {
+  font-family: "Garino-Medium";
+  src: url('../fonts/GarinoMedium/font.woff2') format('woff2'), url('webFonts/GarinoMedium/font.woff') format('woff');
+}
+
+*,
+*::before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--c-lgt);
+  margin: 0;
+  /* font-family: "Asap", sans-serif; */
+  font-family: "Garino-Medium", sans-serif;
+
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  overflow-x: hidden;
+
+  scroll-behavior: smooth;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  height: 5vh;
+  border: var(--bck) solid orange;
+  background-color: var(--c-mid);
+  color: var(--c-lgt);
+}
+
+main {
+  margin-bottom: auto;
+}
+
+footer {
+  background-color: var(--c-mid);
+  color: var(--c-drk);
+  padding: var(--spc-s);
+  text-align: center;
+}
+
+/* ==================================================================================== */
+/* MAIN HTML ELEMENTS */
+/* ==================================================================================== */
+
+section {
+  border: var(--bck) solid steelblue;  
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==================================================================================== */
+/* UTILITY CLASSES */
+/* ==================================================================================== */
+
+.container {
+  border: var(--bck) solid limegreen;
+  width: 80%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.d-flex {
+  display: flex;
+}
+
+/* ==================================================================================== */
+/* DESIGN ELEMENTS */
+/* ==================================================================================== */
+
+.btn {
+  padding: .5em 1em;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1.1rem;
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.btn--primary {
+  border-color: var(--c-mid);
+  color: var(--c-mid);
+}
+
+.btn:hover {
+  opacity: .5;
+}

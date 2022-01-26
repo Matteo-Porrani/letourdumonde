@@ -11,7 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;700&display=swap" rel="stylesheet">
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/quer.css">
   <title>le Tour du Monde</title>
 </head>
 
@@ -40,7 +42,7 @@
               <img src="assets/images/world.jpg" alt="le monde">
             </div>
 
-            <!-- temporary form -->
+            <!-- NEW -- temporary form -->
             <form class="hero__menu" name="hero__menu">
               <select name="continent">
                 <option value="0">Europe</option>
@@ -51,9 +53,26 @@
               </select>
             </form>
 
-            <div class="hero__title">
-              <h2>Europe</h2>
-            </div>
+            <h2 class="hero__title">Europe</h2>
+
+            <p><span class="country__count"></span> pays</p>
+
+            <form class="filter__menu">
+
+
+              <p>Filtres</p>
+
+              <p>
+                <input type="checkbox" name="filterArea" id="filterArea">
+                <label for="filterArea">superficie > 1.500 km<sup>2</sup></label>
+              </p>
+              
+              <p>
+                <input type="checkbox" name="filterPop" id="filterPop">
+                <label for="filterPop">population > 500.000 habitants</label>
+              </p>
+
+            </form>
 
           </div>
 
@@ -64,61 +83,8 @@
         <section class="countries">
           <div class="container">
 
-            <ul class="country__list d-flex">
-
-              <li class="country__link">Pays du monde #1</li>
-              <li class="country__link">Pays du monde #2</li>
-              <li class="country__link">Pays du monde #3</li>
-              <li class="country__link">Pays du monde #4</li>
-              <li class="country__link">Pays du monde #5</li>
-              <li class="country__link">Pays du monde #6</li>
-              <li class="country__link">Pays du monde #7</li>
-              <li class="country__link">Pays du monde #8</li>
-              <li class="country__link">Pays du monde #9</li>
-              <li class="country__link">Pays du monde #10</li>
-              <li class="country__link">Pays du monde #11</li>
-              <li class="country__link">Pays du monde #12</li>
-              <li class="country__link">Pays du monde #13</li>
-              <li class="country__link">Pays du monde #14</li>
-              <li class="country__link">Pays du monde #15</li>
-              <li class="country__link">Pays du monde #16</li>
-              <li class="country__link">Pays du monde #17</li>
-              <li class="country__link">Pays du monde #18</li>
-              <li class="country__link">Pays du monde #19</li>
-              <li class="country__link">Pays du monde #20</li>
-              <li class="country__link">Pays du monde #21</li>
-              <li class="country__link">Pays du monde #22</li>
-              <li class="country__link">Pays du monde #23</li>
-              <li class="country__link">Pays du monde #24</li>
-              <li class="country__link">Pays du monde #25</li>
-              <li class="country__link">Pays du monde #26</li>
-              <li class="country__link">Pays du monde #27</li>
-              <li class="country__link">Pays du monde #28</li>
-              <li class="country__link">Pays du monde #29</li>
-              <li class="country__link">Pays du monde #30</li>
-              <li class="country__link">Pays du monde #31</li>
-              <li class="country__link">Pays du monde #32</li>
-              <li class="country__link">Pays du monde #33</li>
-              <li class="country__link">Pays du monde #34</li>
-              <li class="country__link">Pays du monde #35</li>
-              <li class="country__link">Pays du monde #36</li>
-              <li class="country__link">Pays du monde #37</li>
-              <li class="country__link">Pays du monde #38</li>
-              <li class="country__link">Pays du monde #39</li>
-              <li class="country__link">Pays du monde #40</li>
-              <li class="country__link">Pays du monde #41</li>
-              <li class="country__link">Pays du monde #42</li>
-              <li class="country__link">Pays du monde #43</li>
-              <li class="country__link">Pays du monde #44</li>
-              <li class="country__link">Pays du monde #45</li>
-              <li class="country__link">Pays du monde #46</li>
-              <li class="country__link">Pays du monde #47</li>
-              <li class="country__link">Pays du monde #48</li>
-              <li class="country__link">Pays du monde #49</li>
-              <li class="country__link">Pays du monde #50</li>
-              <li class="country__link">Pays du monde #51</li>
-              <li class="country__link">Pays du monde #52</li>
-
+            <ul class="country__list--primary d-flex">
+              <!-- generated content -->
             </ul>
 
           </div>
@@ -129,25 +95,74 @@
       <div class="page2 hidden">
 
         <div class="container">
-          <button id="backButton" class="btn btn--primary">Accueil</button>
-          <hr>
-          <h2 id="countryName"></h2>
-          <img id="countryFlag" class="country__flag" src="" alt="drapeau du pays">
-          <hr>
-          <small>capitale :</small>
-          <p id="countryCapital"></p>
-          <small>superficie :</small>
-          <p id="countryArea"></p>
-          <small>population :</small>
-          <p id="countryPopulation"></p>
-          <small>pays voisins :</small>
-          <p id="countryBorders"></p>
-          <small>conduite à :</small>
-          <p id="countryCarSide"></p>
-          <small>codes d'identification</small>
-          <p id="countryCodes"></p>
 
-          <img id="countryCoatOfArms" class="country__coat_arms" src=""></img>
+          <div class="country__wrapper">
+
+            <div class="country__nav">
+              <button id="backButton" class="btn btn--primary">Accueil</button>
+            </div>
+
+            <div class="country__list--secondary">
+              <p class="country__nav__continent">Continent</p>
+              <ul>
+                <li>elem1</li>
+                <li>elem2</li>
+                <li>elem3</li>
+                <li>elem4</li>
+                <li>elem5</li>
+                <li>elem6</li>
+                <li>elem7</li>
+                <li>elem8</li>
+                <li>elem9</li>
+                <li>elem10</li>
+              </ul>
+            </div>
+
+            <div class="country__header d-flex">
+              <h2 id="countryName"></h2>
+              <img id="countryFlag" class="country__flag" src="" alt="drapeau du pays">
+            </div>
+
+            <div class="country__info">
+
+              <small>capitale :</small>
+              <p id="countryCapital"></p>
+              <small>superficie :</small>
+              <p id="countryArea"></p>
+              <small>population :</small>
+              <p id="countryPopulation"></p>
+              <small>pays voisins :</small>
+              <p id="countryBorders"></p>
+              <small>conduite à :</small>
+              <p id="countryCarSide"></p>
+              <small>codes d'identification</small>
+              <p id="countryCodes"></p>
+
+            </div>
+
+            <div class="country__heraldic d-flex">
+              <img id="countryCoatOfArms" class="country__heraldic__image" src=""></img>
+            </div>
+
+            <div class="country__promote__image">
+              <img class="country__promote__image__item" src="https://picsum.photos/180/120?grayscale"
+                alt="un site important du pays">
+            </div>
+
+            <div class="country__promote__desc">
+              <p class="promote__desc__title">Un site incontournable</p>
+              <p class="promote__desc__text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos nam
+                consequuntur non, nesciunt officia optio esse, soluta cumque et assumenda voluptatum doloribus tenetur
+                quas ex laudantium expedita omnis! Earum, ipsum.</p>
+            </div>
+
+          </div> <!-- end of country__wrapper -->
+
+
+
+
+
+
 
         </div>
 
@@ -162,7 +177,6 @@
   <!-- MK -- NO FOOTER -->
 
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/display.js"></script>
 </body>
 
 </html>

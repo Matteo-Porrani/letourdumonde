@@ -1,0 +1,15 @@
+
+
+/* T*T -- MEDIA QUERIES */
+
+@media (max-width: 750px) {
+
+  .container {
+    width: 96%;
+  }
+
+  .country {
+    width: 100%;
+  }
+
+}

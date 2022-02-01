@@ -2,6 +2,10 @@ const wip = false;
 
 
 
+const continentsList = ['Europe', 'Afrique', 'Asie', 'Amériques', 'Océanie'];
+const continentsListEng = ['Europe', 'Africa', 'Asia', 'Americas', 'Oceania'];
+
+
 // gestion des filtres
 let dataFilters = {
   area: false,
@@ -15,9 +19,6 @@ let filteredData;
 const page1 = document.querySelector('.page1');
 const page2 = document.querySelector('.page2');
 
-const continentsList = ['Europe', 'Afrique', 'Asie', 'Amériques', 'Océanie'];
-const continentsListEng = ['Europe', 'Africa', 'Asia', 'Americas', 'Oceania'];
-
 let currContinent = 'Europe';
 
 // MK -- declaration avec 'var'
@@ -28,28 +29,13 @@ const countryListPrimary = document.querySelector('.country__list--primary');
 const countryCount = document.querySelector('.country__count');
 
 
-
-
-
-// T*T -- utilities
+// A*A -- utilities ########################################################
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-// T*T
-
-// gestionnaire d'événement <select>
-document.hero__menu.continent.addEventListener('change', () => {
-
-  currContinent = continentsList[parseInt(document.hero__menu.continent.value)];
-  currContinentEng = continentsListEng[parseInt(document.hero__menu.continent.value)];
-
-  refreshContinent(currContinentEng);
-  heroTitle.textContent = currContinent;
-});
-
-
+// A*A -- ##################################################################
 
 function refreshContinent(continentName) {
 
@@ -65,10 +51,10 @@ function refreshContinent(continentName) {
       const popMin = dataFilters.pop ? 500000 : 0;
 
       filteredData = data.filter(country => {
-        if (country.region === continentName 
+        if (country.region === continentName
           && country.area > areaMin
           && country.population > popMin
-          ) {
+        ) {
           return country;
         }
       })
@@ -85,8 +71,8 @@ function refreshContinent(continentName) {
 
         // NEW -- code provisoire pour travailler sur .page2
         if (wip) {
-          getOneCountry('ESP');
-          page2.classList.remove('hidden');
+          getOneCountry('FRA');
+          page2.classList.remove('page--hidden');
           page1.classList.add('out');
         }
 
@@ -98,16 +84,15 @@ function refreshContinent(continentName) {
 
 function displayCountries(countryList) {
 
-
-  console.log(countryList.length);
+  // console.log(countryList.length);
   countryCount.textContent = countryList.length;
 
   let countriesLis = [];
 
   countryList.forEach(country => {
     const countryLi = `<li class="country__link" data-code="${country.cca3}">
-      <img class="thumb__flag" src="${country.flags.png}" width="21px" height="14px"></img>
-      ${country.translations.fra.common}
+      <img class="thumb__flag" src="${country.flags.png}"></img>
+      <span class="country__name">${country.translations.fra.common}</span>
     </li>`;
     countriesLis.push(countryLi);
   });
@@ -120,7 +105,7 @@ function displayCountries(countryList) {
 
     countryLink.addEventListener('click', function (e) {
 
-      getOneCountry(e.target.dataset.code.toLowerCase());
+      getOneCountry(this.dataset.code.toLowerCase());
 
       // ramène le scroll au top si la card du pays cliqué est très en bas dans le document
       window.scrollTo({
@@ -129,7 +114,8 @@ function displayCountries(countryList) {
         behavior: 'smooth'
       });
 
-      page2.classList.remove('hidden');
+      // BUG -- affichage PAGE 2 désactivé
+      page2.classList.remove('page--hidden');
       page1.classList.add('out');
     });
   })
@@ -147,7 +133,14 @@ refreshContinent(currContinent);
 
 
 // get DOM elements for '.page2'
-const countryName = document.querySelector('#countryName');
+const countryNavContinent = document.querySelector('.country__nav__continent');
+const page2CountryList = document.querySelector('.page2__country__list');
+
+const countryInfo = document.querySelector('.country__info');
+
+console.log(countryInfo);
+
+const headerCountryName = document.querySelector('#headerCountryName');
 const countryFlag = document.querySelector('#countryFlag');
 const countryCapital = document.querySelector('#countryCapital');
 const countryArea = document.querySelector('#countryArea');
@@ -181,7 +174,7 @@ function getOneCountry(countryCode) {
 
 
 function showOneCountry(country) {
-  countryName.textContent = country.translations.fra.common;
+  headerCountryName.textContent = country.translations.fra.common;
   countryFlag.src = country.flags.png;
 
   countryCapital.textContent = country.capital;
@@ -214,13 +207,34 @@ function showOneCountry(country) {
   countryCodes.textContent = `${country.cca3} / ${country.ccn3}`;
 
   countryCoatOfArms.src = country.coatOfArms.png || 'https://via.placeholder.com/300?text=image+indisponible';
+
+
+
+  // NEW -- liste des pays dans '.country__list--secondary'
+
+  countryNavContinent.textContent = currContinent;
+
+  const accessibleCountries = filteredData.map(country => {
+    return `<li>
+    <span class="page2NavItem">${country.translations.fra.common}</span>
+    </li>`
+  });
+
+  page2CountryList.innerHTML = accessibleCountries.join('');
+
+
+  // NEW -- image de fond très claire
+
+  // countryInfo.setAttribute('background-image', `linear-gradient(rgba(250, 250, 250, .95), rgba(250, 250, 250, .95)), url("${country.coatOfArms.png}");`);
+  countryInfo.setAttribute('background-image', `url('${country.coatOfArms.png}')`);
+
 }
 
 
 function resetCountry() {
 
   const countryFields = [
-    countryName,
+    headerCountryName,
     countryFlag,
     countryCapital,
     countryArea,
@@ -247,7 +261,7 @@ backButton.addEventListener('click', () => {
   resetCountry();
 
   page1.classList.remove('out');
-  page2.classList.add('hidden');
+  page2.classList.add('page--hidden');
 });
 
 

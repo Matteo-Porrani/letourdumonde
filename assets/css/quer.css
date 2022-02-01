@@ -1,15 +1,53 @@
 
+/* ==================================================================================== */
+/* MEDIA QUERIES */
+/* ==================================================================================== */
 
-/* T*T -- MEDIA QUERIES */
+@media (min-width: 820px) {
 
-@media (max-width: 750px) {
+  /* GENERAL */
 
   .container {
-    width: 96%;
+    width: 80%;
   }
+
+  /* PAGE 1 */
 
   .country {
     width: 100%;
   }
+
+  .page1 {
+    display: flex;
+
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .page1 .container {
+    width: 96%;
+  }
+
+  .hero {
+    /* background: yellow; */
+    width: 50%;
+  }
+  
+  .countries {
+    /* background: palegoldenrod; */
+    width: 50%;
+  }
+
+  .country__name {
+    font-size: .9rem;
+  }
+
+  .country__flag {
+    height: 8vh;
+  }
+
+
+
+  /*  */
 
 }

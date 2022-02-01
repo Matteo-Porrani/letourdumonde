@@ -1,29 +1,4 @@
 
-.map {
-  margin-top: 5rem;
-}
-
-.container {
-  border: 5px solid #6C757D;
-  width: 40%;
-  margin: 0 auto;
-
-  /* background: steelblue; */
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-h2 {
-  text-align: center;
-}
-
-
-
-
-
 /* SVG */
 
 .continent {
@@ -91,6 +66,4 @@ g:hover {
   fill: #b8e994;
   stroke: #83c653;
 }
-
-
 

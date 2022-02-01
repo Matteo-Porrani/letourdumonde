@@ -18,7 +18,6 @@
       <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0, 0, 1850, 1100">
 
-
         <!-- EUROPE -->
         <g id="eur" class="continent">
           <path data-code="0" class="active"
@@ -34,7 +33,6 @@
             stroke="#6c757d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
         </g>
 
-
         <!-- AFRICA -->
         <g id="afr" class="continent">
           <path data-code="1"
@@ -44,7 +42,6 @@
             d="M1105.5,800.5 L1120.5,800.5 L1120.5,825.5 L1110.5,870.5 L1080.5,870.5 L1090.5,815.5 L1105.5,815.5 C1105.5,815.5 1105.5,800.5 1105.5,800.5 z"
             stroke="#6c757d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
         </g>
-
 
         <!-- ASIA -->
         <g id="asi" class="continent">
@@ -69,7 +66,6 @@
             stroke="#6c757d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
         </g>
 
-
         <!-- AMERICAS -->
         <g id="ame" class="continent">
           <path data-code="3"
@@ -91,7 +87,6 @@
           <path data-code="3" d="M505.5,637.5 L533.5,637.5 L533.5,647.5 L505.5,647.5 z" stroke="#6c757d" stroke-width="4"
             stroke-linecap="round" stroke-linejoin="round" />
         </g>
-
 
         <!-- OCEANIA -->
         <g id="oce" class="continent">
@@ -116,41 +111,6 @@
 
   <script>
 
-    const paths = document.querySelectorAll('path');
-
-    const continents = document.querySelectorAll('.continent');
-    const output = document.querySelector('#hero__title');
-    const contArr = ['Europe', 'Afrique', 'Asie', 'Amériques', 'Océanie'];
-    const contCodes = ['eur', 'afr', 'asi', 'ame', 'oce'];
-
-    continents.forEach(continent => {
-      continent.addEventListener('click', selectContinent);
-    })
-
-    function selectContinent(e) {
-      // console.log(e.target.dataset.code);
-
-      // reset all paths to gray
-      resetPathColor()
-
-      // set the title
-      output.textContent = contArr[parseInt(e.target.dataset.code)];
-
-      // get all elements having the selected data-code (ex : data-code="0")
-      const selectedPaths = document.querySelectorAll(`[data-code="${e.target.dataset.code}"]`);
-
-      // apply class .active (and color )
-      selectedPaths.forEach(p => p.classList.add('active'));
-      
-
-    }
-
-
-    function resetPathColor() {
-
-      paths.forEach(path => path.classList.remove('active'));
-
-    }
 
   </script>
 

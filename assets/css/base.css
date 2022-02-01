@@ -53,6 +53,11 @@ main {
   margin-bottom: auto;
 }
 
+/* une espèce de méga container qui englobe les 2 pages */
+.display {
+  padding: 2rem 0;
+}
+
 footer {
   background-color: var(--c-mid);
   color: var(--c-drk);
@@ -99,7 +104,7 @@ ul {
 
 .container {
   border: var(--bck) solid limegreen;
-  width: 80%;
+  width: 96%;
   max-width: 1080px;
   margin: 0 auto;
 }

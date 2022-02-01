@@ -87,8 +87,6 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-
-  gap: .5rem;
   
   padding: 0;
   list-style: none;
@@ -98,7 +96,7 @@
 .country__link {
   width: 24%;
   /* flex-grow: 1; */
-  border: 1px solid var(--c-mid);
+  /* border: 1px solid var(--c-mid); */
   border-radius: 4px;
   padding: .25em .5em;
   margin: .25em 0;
@@ -106,6 +104,15 @@
   font-size: .8rem;
 
   cursor: pointer;
+}
+
+.thumb__flag {
+  display: inline-block;
+  width: 21px;
+  height: 14px;
+  margin-right: .5rem;
+  border: 1px solid var(--c-mid);
+
 }
 
 

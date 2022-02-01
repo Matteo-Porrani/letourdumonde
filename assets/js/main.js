@@ -21,7 +21,7 @@ const continentsListEng = ['Europe', 'Africa', 'Asia', 'Americas', 'Oceania'];
 let currContinent = 'Europe';
 
 // MK -- declaration avec 'var'
-var currContinentEng = '';
+var currContinentEng = 'Europe';
 
 const heroTitle = document.querySelector('.hero__title');
 const countryListPrimary = document.querySelector('.country__list--primary');
@@ -105,7 +105,10 @@ function displayCountries(countryList) {
   let countriesLis = [];
 
   countryList.forEach(country => {
-    const countryLi = `<li class="country__link" data-code="${country.cca3}">${country.translations.fra.common}</li>`;
+    const countryLi = `<li class="country__link" data-code="${country.cca3}">
+      <img class="thumb__flag" src="${country.flags.png}" width="21px" height="14px"></img>
+      ${country.translations.fra.common}
+    </li>`;
     countriesLis.push(countryLi);
   });
 

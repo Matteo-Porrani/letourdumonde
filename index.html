@@ -11,6 +11,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;700&display=swap" rel="stylesheet">
 
 
+
+  <link href="https://fonts.googleapis.com/css2?family=Yesteryear&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inria+Sans:wght@300;700&display=swap" rel="stylesheet"> 
+
   <!-- Phosphor Icons -->
   <script src="https://unpkg.com/phosphor-icons" defer></script>
 
@@ -27,8 +31,10 @@
 
   <header>
     <div class="container">
-      <h1>
-        <a>le Tour du Monde</a>
+      <h1 class="logo">
+        <!-- <i class="logo__icon ph-globe-hemisphere-west-light"></i> -->
+        <i class="logo__icon ph-globe-light"></i>
+        <a class="logo__link" href="index.html#page1">le Tour du Monde</a>
       </h1>
     </div>
   </header>
@@ -43,6 +49,13 @@
         <section class="hero">
 
           <div class="container">
+
+            <!-- CONTINENT HEADER -->
+            <div class="continent__header">
+              <h2 class="continent__name">Europe</h2>
+              <p class="country__count__parag"><span class="country__count"></span> pays</p>
+            </div>
+
 
             <!-- HERO IMAGE -->
             <div class="hero__image__wrapper">
@@ -146,23 +159,7 @@
 
             <!-- NEW -- temporary form -->
 
-            <!--
-            <form class="hero__menu" name="hero__menu">
-              <select name="continent">
-                <option value="0">Europe</option>
-                <option value="1">Afrique</option>
-                <option value="2">Asie</option>
-                <option value="3">Amériques</option>
-                <option value="4">Océanie</option>
-              </select>
-            </form>
-            -->
 
-            <!-- CONTINENT HEADER -->
-            <div class="continent__header">
-              <h2 class="continent__name">Europe</h2>
-              <p><span class="country__count"></span> pays</p>
-            </div>
 
 
             <form class="filter__menu">
@@ -188,6 +185,8 @@
             <!-- <img src="assets/images/airplane-tilt.svg" alt=""> -->
 
             <ul class="country__list--primary d-flex">
+
+              <!-- A*A -- LOADER -->
               <div class="loader__wrapper">
                 <div class="lds-ellipsis">
                   <div></div>
@@ -196,6 +195,7 @@
                   <div></div>
                 </div>
               </div>
+
             </ul>
 
           </div>
@@ -211,26 +211,27 @@
           <div class="country__wrapper">
 
             <div class="country__nav">
-              <button id="backButton" class="btn btn--primary">Accueil</button>
+              <a id="backButton" class="btn btn--primary">
+                <i class="ph-caret-left"></i>
+                <span>Accueil</span>
+              </a>
             </div>
 
+            <!-- A*A -- ACCORDEON -->
             <div class="country__list--secondary">
-              <p class="country__nav__continent">Continent</p>
-              <ul class="page2__country__list">
-                <li>elem1</li>
-                <li>elem2</li>
-                <li>elem3</li>
-                <li>elem4</li>
-                <li>elem5</li>
-                <li>elem6</li>
-                <li>elem7</li>
-                <li>elem8</li>
-                <li>elem9</li>
-                <li>elem10</li>
+
+              <div class="country__list__header--secondary">
+                <p class="country__nav__continent"></p>
+                <i class="toggler--page2 ph-list" data-state="closed"></i>
+              </div>
+
+              <ul class="page2__country__list country__list--hidden">
+                <!-- generated content -->
               </ul>
+
             </div>
 
-            <div class="country__header d-flex">
+            <div class="country__header">
               <h2 id="headerCountryName"></h2>
               <img id="countryFlag" class="country__flag" src="" alt="drapeau du pays">
             </div>
@@ -263,15 +264,22 @@
 
             </div>
 
-            <div class="country__heraldic d-flex">
-              <img id="countryCoatOfArms" class="country__heraldic__image" src=""></img>
-            </div>
+            <div class="country__content--secondary">
 
-            <div class="country__promote__desc">
-              <p class="promote__desc__title">???</p>
-              <p class="promote__desc__text">
-                Le Nicaragua, entre l'océan Pacifique et la mer des Caraïbes, est un pays d'Amérique centrale connu pour la force de son relief formé de lacs, de volcans et de plages. Le grand lac Managua et l'emblématique stratovolcan Momotombo se trouvent au nord de la capitale, Managua. Au sud, la ville de Granada se distingue par son architecture coloniale hispanique et un archipel d'îlots navigables et peuplés d'oiseaux tropicaux.
-              </p>
+              <div class="country__heraldic">
+                <img id="countryCoatOfArms" class="country__heraldic__image" src=""></img>
+              </div>
+
+              <div class="country__promote__desc">
+                <p class="promote__desc__text">
+                  Le Nicaragua, entre l'océan Pacifique et la mer des Caraïbes, est un pays d'Amérique centrale connu
+                  pour la force de son relief formé de lacs, de volcans et de plages. Le grand lac Managua et
+                  l'emblématique stratovolcan Momotombo se trouvent au nord de la capitale, Managua. Au sud, la ville de
+                  Granada se distingue par son architecture coloniale hispanique et un archipel d'îlots navigables et
+                  peuplés d'oiseaux tropicaux.
+                </p>
+              </div>
+
             </div>
 
           </div> <!-- end of country__wrapper -->
@@ -288,6 +296,7 @@
 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/map.js"></script>
+  <script src="assets/js/page2toggler.js"></script>
 </body>
 
 </html>

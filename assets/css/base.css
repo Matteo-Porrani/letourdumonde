@@ -1,6 +1,11 @@
 :root {
   --bck: 0px;
 
+  --c-hero: #363c59;
+  --c-sibl: #637199;
+  --c-sand: #e7e0d9;
+  --c-oppo: #cc3945;
+
   --c-drk: #212529;
   --c-mid: #bbbcbe;
   --c-lgt: #f8f9fa;
@@ -24,10 +29,12 @@
 }
 
 body {
-  background: var(--c-lgt);
+  background: var(--c-sand);
   margin: 0;
   /* font-family: "Asap", sans-serif; */
-  font-family: "Garino-Medium", sans-serif;
+  /* font-family: "Garino-Medium", sans-serif; */
+
+  font-family: 'Inria Sans', sans-serif;
 
   min-height: 100vh;
 
@@ -41,11 +48,13 @@ body {
 }
 
 header {
+  border: var(--bck) solid orange;
+
   display: flex;
   align-items: center;
-  height: 5vh;
-  border: var(--bck) solid orange;
-  background-color: var(--c-mid);
+  padding: .5rem 0;
+  
+  background-color: var(--c-hero);
   color: var(--c-lgt);
 }
 
@@ -81,11 +90,22 @@ h3 {
 }
 
 h1 {
-  font-size: 1.6rem;
+  font-size: 2.5rem;
+  color: var(--c-lgt);
+}
+
+.logo__icon {
+  font-size: 3rem;
 }
 
 h2 {
-  font-size: 1.4rem;
+  font-size: 2rem;
+}
+
+h1,
+h2 {
+  font-family: 'Yesteryear', cursive;
+  font-weight: normal;
 }
 
 h3 {
@@ -105,7 +125,7 @@ ul {
 .container {
   border: var(--bck) solid limegreen;
   width: 96%;
-  max-width: 1080px;
+  /* max-width: 1080px; */
   margin: 0 auto;
 }
 
@@ -117,15 +137,25 @@ ul {
 /* DESIGN ELEMENTS */
 /* ==================================================================================== */
 
+i {
+  /* background: red; */
+}
+
 .btn {
-  padding: .5em 1em;
   border: 1px solid transparent;
   border-radius: 4px;
   font-family: inherit;
-  font-size: 1.1rem;
+  font-size: .8rem;
   background: transparent;
-
+  padding: .25em .5em;
+  
   cursor: pointer;
+
+  width: fit-content;
+  display: flex;
+  align-items: center;
+
+  gap: .5rem;
 }
 
 .btn--primary {

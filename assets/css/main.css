@@ -36,6 +36,22 @@
 /* CUSTOM CLASSES */
 /* ==================================================================================== */
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo i {
+  font-size: 2rem;
+}
+
+.logo__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+
 /* PAGE 1 ============================================================================= */
 
 .hero__image__wrapper {
@@ -63,7 +79,14 @@
 
 .continent__name {
   border: var(--bck) solid teal;
-  margin: 2rem 0;
+  color: var(--c-hero);
+  text-align: center;
+  font-size: 3rem;
+
+  margin: 2rem 0 .75rem;
+}
+
+.country__count__parag {
   text-align: center;
 }
 
@@ -149,127 +172,123 @@
   margin-right: .25rem;
 }
 
+
+
+
+
 /* PAGE 2 ============================================================================= */
 
 small {
-  color: var(--c-mid);
+  color: var(--c-sibl);
+  font-weight: 700;
   /* background: wheat; */
 }
 
 .phos {
-  color: var(--c-drk);
+  color: var(--c-sibl);
   /* background: lime; */
   font-size: 1rem;
 }
 
-/* mise en forme GRID */
 
-.country__wrapper {
-  --sunglow: #fcca46;
-  --pumpkin: #fe7f2d;
-  --winter-red: #ff006e;
-  --blue-violet: #8338ec;
-  --azure: #3a86ff;
-  --polished-pine: #619b8a;
-  --olivine: #a1c181;
-  --charcoal: #233d4d;
-  
-  max-height: 85vh;
-  display: grid;
-  grid-template-columns: 2fr 5fr 5fr;
-  grid-template-rows: 1fr repeat(3, 3fr);
-}
+/* NAVIGATION CONTINENT PAGE 2 + TOGGLER */
 
-.country__nav {
-  /* background: var(--sunglow); */
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-}
 
 .country__list--secondary {
-  /* background: var(--pumpkin); */
-  grid-column: 1 / 2;
-  grid-row: 2 / 5;
+  /* border: 2px solid red; */
 
+  background: var(--c-sand);
   font-size: .8rem;
+
+  padding: .25rem .75rem;
+
+  margin-block: 1rem;
 }
 
+.country__list__header--secondary {
+  /* border: 2px solid purple; */
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.country__nav__continent {
+  color: var(--c-hero);
+  font-family: 'Yesteryear', cursive;
+  font-weight: 400;
+  font-size: 1.75rem;
+
+  margin: 0;
+}
+
+.toggler--page2 {
+  font-size: 1.5rem;
+}
+
+/* <ul> */
+.page2__country__list {
+  /* background: pink; */
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* cette classe est appliquée sur <ul.page2__country__list> */
+.country__list--hidden {
+  display: none;
+}
+
+
+
+/* <li> */
 .page2NavItem {
   font-size: .6rem;
 }
 
-.country__header {
-  /* background: var(--winter-red); */
-  grid-column: 2 / 4;
-  grid-row: 1 / 2;
+.country__flag {
 
-  justify-content: space-between;
+  /* border: 10px solid blue; */
+  display: block;
+  width: 50%;
+  max-width: 280px;
+  margin: 1.5rem auto;
 }
 
 #headerCountryName {
   font-size: 2rem;
+  color: var(--c-hero);
+  text-align: center;
 }
 
-.country__flag {
-  border: 1px solid var(--c-mid);
-  /* height: 70px; */
-  height: 10vw;
-}
-
+/* BUG -- backgorund image problem */
+/*
 .country__info {
-  /* background: var(--blue-violet); */
-  grid-column: 2 / 3;
-  grid-row: 2 / 5;
 
-
-
-  /* background-image: linear-gradient(rgba(250, 250, 250, .95), rgba(250, 250, 250, .95)), url('../images/mo.png'); */
-  background-blend-mode: lighten;
-  background-repeat: no-repeat;
-  background-size: 200%;
-  background-position: 90% -180%;
+    background-image: linear-gradient(rgba(250, 250, 250, .95), rgba(250, 250, 250, .95)), url('../images/mo.png');
+    background-blend-mode: lighten;
+    background-repeat: no-repeat;
+    background-size: 200%;
+    background-position: 90% -180%;
 }
+*/
 
-.country__heraldic {
-  /* background: var(--azure); */
-  /* background: rgba(58, 134, 255, .1); */
-  
-  grid-column: 3 / 4;
-  grid-row: 2 / 3;
+.country__content--secondary {
+  /* border: 3px solid #000; */
 
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+
+  padding: 1rem 0;
 }
 
 .country__heraldic__image {
   height: 18vh;
 }
 
-.country__promote__image {
-  /* background: var(--polished-pine); */
-  grid-column: 3 / 4;
-  grid-row: 3 / 4;
-
-  text-align: right;
-}
-
-.country__promote__image__item {
-  width: 80%;
-  object-fit: cover;
-}
-
-.country__promote__desc {
-  /* background: #f0f1ef; */
-  /* background: var(--olivine); */
-  /* background: rgba(161, 193, 129, .2); */
-  grid-column: 3 / 4;
-  grid-row: 3 / 5;
-}
-
 .promote__desc__text {
   line-height: 1.6;
 }
-
-/* CSS HEX */
 
 

@@ -19,6 +19,7 @@
 
   .page1 {
     display: flex;
+    justify-content: space-between;
 
     max-width: 80%;
     margin: 0 auto;
@@ -28,23 +29,142 @@
     width: 96%;
   }
 
-  .hero {
+  .hero,
+  .countries {
     /* background: yellow; */
-    width: 50%;
+    width: 46%;
   }
   
-  .countries {
-    /* background: palegoldenrod; */
-    width: 50%;
-  }
-
   .country__name {
     font-size: .9rem;
   }
 
-  .country__flag {
-    height: 8vh;
+
+
+/* page 2 */
+
+/* mise en forme GRID */
+
+.country__wrapper {
+  --sunglow: #fcca46;
+  --pumpkin: #fe7f2d;
+  --winter-red: #ff006e;
+  --blue-violet: #8338ec;
+  --azure: #3a86ff;
+  --polished-pine: #619b8a;
+  --olivine: #a1c181;
+  --charcoal: #233d4d;
+  
+  max-height: 85vh;
+  display: grid;
+  grid-template-columns: 3fr 5fr 5fr;
+  grid-template-rows: 1fr repeat(3, 3fr);
+  grid-gap: .75rem;
+}
+
+.country__nav {
+  /* background: var(--sunglow); */
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.country__list--secondary {
+  grid-column: 1 / 2;
+  grid-row: 2 / 5;
+
+  padding: 1rem;
+  margin: 0;
+}
+
+/*
+
+ici j'utilise '!important' pour écraser le style par défaut de <i>
+  [class^="ph-"], [class*=" ph-"] {
+    display: inline-flex;
   }
+
+*/
+
+.toggler--page2 {
+  display: none !important; 
+}
+
+.country__list--hidden {
+  display: block;
+}
+
+/* cette déclaration est doublon avec main.css */
+/* mais c'est nécessaire pour remplacer la déclaration précédente (display: block) */
+.page2__country__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+
+
+.country__header {
+  /* background: var(--winter-red); */
+  grid-column: 2 / 4;
+  grid-row: 1 / 2;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+#headerCountryName {
+  font-size: 3rem;
+}
+
+.country__flag {
+  /* border: 10px solid red; */
+  display: inline;
+  width: 15vw;
+  max-width: 160px;
+  margin: 0;
+}
+
+
+.country__info {
+  /* background: var(--blue-violet); */
+  grid-column: 2 / 3;
+  grid-row: 2 / 5;
+}
+
+.country__content--secondary {
+  flex-direction: column-reverse;
+}
+
+
+
+.country__heraldic {
+  /* background: var(--azure); */
+  /* background: rgba(58, 134, 255, .1); */
+  
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.country__promote__image {
+  /* background: var(--polished-pine); */
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+
+  text-align: right;
+}
+
+.country__promote__desc {
+  /* background: #f0f1ef; */
+  /* background: rgba(161, 193, 129, .2); */
+  grid-column: 3 / 4;
+  grid-row: 3 / 5;
+}
+
+
+
 
 
 

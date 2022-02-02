@@ -14,13 +14,14 @@
   --spacer-l: 2.25rem;
   --spc-m: 1rem;
   --spc-s: .75rem;
-
 }
 
+/*
 @font-face {
   font-family: "Garino-Medium";
   src: url('../fonts/GarinoMedium/font.woff2') format('woff2'), url('webFonts/GarinoMedium/font.woff') format('woff');
 }
+*/
 
 *,
 *::before,
@@ -31,31 +32,39 @@
 body {
   background: var(--c-sand);
   margin: 0;
-  /* font-family: "Asap", sans-serif; */
-  /* font-family: "Garino-Medium", sans-serif; */
-
-  font-family: 'Inria Sans', sans-serif;
-
   min-height: 100vh;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  overflow-x: hidden;
+  background-image: url('../images/background_sea.svg');
+  background-position: center;
+  background-size: cover;
 
+  background-repeat: no-repeat;
+
+
+  
+  overflow-x: hidden;
+  
+  font-family: 'Inria Sans', sans-serif;
   scroll-behavior: smooth;
 }
 
 header {
   border: var(--bck) solid orange;
 
-  display: flex;
-  align-items: center;
   padding: .5rem 0;
-  
   background-color: var(--c-hero);
   color: var(--c-lgt);
+}
+
+header .container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: .5rem;
 }
 
 main {
@@ -79,14 +88,15 @@ footer {
 /* ==================================================================================== */
 
 section {
-  border: var(--bck) solid steelblue;  
+  border: var(--bck) solid steelblue;
 }
 
 h1,
-h2,
-h3 {
+h2 {
   margin: 0;
   padding: 0;
+  font-family: 'Yesteryear', cursive;
+  font-weight: normal;
 }
 
 h1 {
@@ -102,14 +112,12 @@ h2 {
   font-size: 2rem;
 }
 
-h1,
-h2 {
-  font-family: 'Yesteryear', cursive;
-  font-weight: normal;
-}
-
 h3 {
   font-size: 1.2rem;
+}
+
+p {
+  margin: .5rem 0;
 }
 
 ul {
@@ -137,17 +145,11 @@ ul {
 /* DESIGN ELEMENTS */
 /* ==================================================================================== */
 
-i {
-  /* background: red; */
-}
-
 .btn {
-  border: 1px solid transparent;
-  border-radius: 4px;
-  font-family: inherit;
-  font-size: .8rem;
-  background: transparent;
-  padding: .25em .5em;
+
+  font-size: .875rem;
+
+  padding: .125rem .25rem;
   
   cursor: pointer;
 
@@ -158,11 +160,9 @@ i {
   gap: .5rem;
 }
 
-.btn--primary {
-  border-color: var(--c-mid);
-  color: var(--c-mid);
+.btn:hover {
+  background: var(--c-hero);
+  color: var(--c-lgt);
 }
 
-.btn:hover {
-  opacity: .5;
-}
+

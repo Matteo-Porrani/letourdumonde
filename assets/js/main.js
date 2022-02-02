@@ -114,9 +114,12 @@ function displayCountries(countryList) {
         behavior: 'smooth'
       });
 
-      // BUG -- affichage PAGE 2 désactivé
+      // NEW -- fly !
+      fly();
+
       page2.classList.remove('page--hidden');
       page1.classList.add('out');
+
     });
   })
 
@@ -262,6 +265,7 @@ backButton.addEventListener('click', () => {
 
   page1.classList.remove('out');
   page2.classList.add('page--hidden');
+
 });
 
 

@@ -20,15 +20,13 @@
 .page2 {
   position: absolute;
   inset: 0 0 0 0;
-  /* background: #bae67e; */
   background: var(--c-lgt);
   padding: 2rem;
 
-  transition: transform .6s ease-in-out;
+  transition: transform .8s ease-in-out;
 }
 
 .page--hidden {
-  /* FIXME -- temporary */
   transform: translateX(100vw);
 }
 
@@ -42,9 +40,14 @@
   gap: 1rem;
 }
 
-.logo i {
-  font-size: 2rem;
+.logo__compass {
+  width: 48px;
+  height: 48px;
 }
+
+/* .logo i {
+  font-size: 2rem;
+} */
 
 .logo__link {
   text-decoration: none;
@@ -53,6 +56,23 @@
 
 
 /* PAGE 1 ============================================================================= */
+
+.plane,
+.plane__shadow {
+  display: none; /* initially hidden */
+
+  position: absolute;
+  left: 10px;
+  top: 100vh;
+
+  z-index: 9999;
+}
+
+.plane img,
+.plane__shadow img {
+  width: 68px;
+  height: 68px;
+}
 
 .hero__image__wrapper {
   border: var(--bck) solid teal;
@@ -82,17 +102,11 @@
   color: var(--c-hero);
   text-align: center;
   font-size: 3rem;
-
-  margin: 2rem 0 .75rem;
 }
 
 .country__count__parag {
   text-align: center;
-}
-
-/* cible le <p> qui contient le <span> .country__count */
-.continent__header > p:last-child {
-  color: var(--c-mid);
+  color: var(--c-drk);
 }
 
 .filter__menu {
@@ -126,42 +140,46 @@
   display: flex;
   align-items: center;
 
-  margin: .25em 0;
+  margin: .125em 0;
 }
 
-.country__name {
-  /* background: steelblue; */
-  font-size: .7rem;
+/* country__name & hover effect */
 
+.country__name {
+  font-size: .750rem;
   position: relative;
+  
+  padding: .125rem .25rem;
 
   transition: all .2s ease-in-out;
 }
 
 .country__name:hover {
-  opacity: .5;
-  /* text-decoration: underline; */
+  background: var(--c-hero);
+  color: var(--c-lgt);
 }
 
 .country__name::after {
   content: '';
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
   background-image: url('../images/airplane-tilt.svg');
   background-size: cover;
   position: absolute;
-  right: -20px;
+  right: -30px;
   top: 0;
-
   opacity: 0;
 
   transition: all .2s ease-in-out;
-
 }
 
 .country__name:hover::after {
   opacity: 1;
 }
+
+
+
+/* miniatures drapeaux */
 
 .thumb__flag {
   display: inline-block;
@@ -248,7 +266,7 @@ small {
 
 .country__flag {
 
-  /* border: 10px solid blue; */
+  border: 1px solid var(--c-drk);
   display: block;
   width: 50%;
   max-width: 280px;

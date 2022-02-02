@@ -27,6 +27,9 @@ function fly() {
   
       planeShadow.style.left = `${pLeft + 40}px`;
       planeShadow.style.top = `${pTop + 80}px`;
+
+      plane.style.display = 'none';
+      planeShadow.style.display = 'none';
   
       return;
     }

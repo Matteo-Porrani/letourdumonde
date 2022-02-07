@@ -6,6 +6,8 @@
 .display {
   border: var(--bck) solid magenta;
   position: relative;
+  overflow-x: hidden;
+  position: relative;
 }
 
 .page1 {
@@ -13,8 +15,8 @@
 }
 
 .out {
-  max-height: 95vh;
-  overflow-y: hidden;
+  /* max-height: 95vh; */
+  /* overflow-y: hidden; */
 }
 
 .page2 {
@@ -140,7 +142,7 @@
   display: flex;
   align-items: center;
 
-  margin: .125em 0;
+  margin: 0;
 }
 
 /* country__name & hover effect */

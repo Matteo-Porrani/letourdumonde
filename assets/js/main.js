@@ -1,9 +1,15 @@
+// if true opens directly page2
 const wip = false;
-
-
 
 const continentsList = ['Europe', 'Afrique', 'Asie', 'Amériques', 'Océanie'];
 const continentsListEng = ['Europe', 'Africa', 'Asia', 'Americas', 'Oceania'];
+
+// DOM elements for '.page1'
+const page1 = document.querySelector('.page1');
+const page2 = document.querySelector('.page2');
+const heroTitle = document.querySelector('.hero__title');
+const countryListPrimary = document.querySelector('.country__list--primary');
+const countryCount = document.querySelector('.country__count');
 
 
 // gestion des filtres
@@ -13,20 +19,12 @@ let dataFilters = {
 }
 
 
-
 let filteredData;
-
-const page1 = document.querySelector('.page1');
-const page2 = document.querySelector('.page2');
-
 let currContinent = 'Europe';
 
-// MK -- declaration avec 'var'
+// MK -- declaration avec 'var' for global scope
 var currContinentEng = 'Europe';
-
-const heroTitle = document.querySelector('.hero__title');
-const countryListPrimary = document.querySelector('.country__list--primary');
-const countryCount = document.querySelector('.country__count');
+var allCountries = [];
 
 
 // A*A -- utilities ########################################################
@@ -35,6 +33,31 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function getCountryFromCca3(cca3) {
+  return (allCountries.find(item => item.cca3 === cca3)).translations.fra.common;
+}
+
+function capitalizeString(str) {
+
+  const exceptions = ["de", "des", "du", "d'"];
+
+  const arrayStr = str.split(" ");
+  arrayCapitalzd = arrayStr.map(word => {
+    if (!exceptions.includes(word)) {
+      if (word != "République") {
+        return word[0].toUpperCase() + word.substring(1);
+      } else {
+        return "Rép.";
+      }
+    } else {
+      return word;
+    }
+  });
+
+  return arrayCapitalzd.join(" ");
+}
+
+
 // A*A -- ##################################################################
 
 function refreshContinent(continentName) {
@@ -42,9 +65,8 @@ function refreshContinent(continentName) {
   fetch('https://restcountries.com/v3.1/all')
     .then(res => res.json())
     .then(data => {
-      // console.log ALL countries
-      console.log(data);
 
+      allCountries = Array.from(data);
 
       // filtres
       const areaMin = dataFilters.area ? 1500 : -10;
@@ -69,35 +91,64 @@ function refreshContinent(continentName) {
       if (filteredData) {
         displayCountries(filteredData);
 
-        // NEW -- code provisoire pour travailler sur .page2
+        // A*A -- temporary code (wip page2)
         if (wip) {
           getOneCountry('FRA');
           page2.classList.remove('page--hidden');
           page1.classList.add('out');
         }
-
       }
 
     });
 }
 
 
+const longNameCountries = ["Territoire britannique de l'océan Indien", "Sainte-Hélène, Ascension et Tristan da Cunha"];
+
 function displayCountries(countryList) {
 
-  // console.log(countryList.length);
   countryCount.textContent = countryList.length;
 
-  let countriesLis = [];
 
   countryList.forEach(country => {
-    const countryLi = `<li class="country__link" data-code="${country.cca3}">
-      <img class="thumb__flag" src="${country.flags.png}"></img>
-      <span class="country__name">${country.translations.fra.common}</span>
-    </li>`;
-    countriesLis.push(countryLi);
+
+    switch (country.translations.fra.common) {
+
+      case "Territoire britannique de l'océan Indien":
+        country.menuName = "Terr. Britanniques de l'O. Indien";
+        break; 
+      case "Sainte-Hélène, Ascension et Tristan da Cunha":
+        country.menuName = "St-Hélène, Ascension & Tr. da Cunha";
+        break; 
+      case "Saint-Vincent-et-les-Grenadines":
+        country.menuName = "St-Vincent-et-les-Grenadines";
+        break; 
+      case "Îles mineures éloignées des États-Unis":
+        country.menuName = "Îles min. él. des États-Unis";
+        break; 
+      default:
+        country.menuName = country.translations.fra.common;
+        break;
+    }
+
   });
 
-  countryListPrimary.innerHTML = countriesLis.join('');
+  // Saint-Vincent-et-les-Grenadines
+
+
+  // FIXME ***
+  let countryListElems = [];
+
+  countryList.forEach(country => {
+    const countryLi = `
+      <li class="country__link" data-code="${country.cca3}">
+        <img class="thumb__flag" src="${country.flags.png}">
+        <span class="country__name">${capitalizeString(country.menuName)}</span>
+      </li>`;
+    countryListElems.push(countryLi);
+  });
+
+  countryListPrimary.innerHTML = countryListElems.join('');
 
   // après avoir injecté les éléments dans le DOM on applique un gestionnaire d'événement
   const countryLinks = document.querySelectorAll('.country__link');
@@ -139,29 +190,21 @@ refreshContinent(currContinent);
 const countryNavContinent = document.querySelector('.country__nav__continent');
 const page2CountryList = document.querySelector('.page2__country__list');
 
-const countryInfo = document.querySelector('.country__info');
-
-console.log(countryInfo);
-
 const headerCountryName = document.querySelector('#headerCountryName');
 const countryFlag = document.querySelector('#countryFlag');
+const countryInfo = document.querySelector('.country__info');
+
 const countryCapital = document.querySelector('#countryCapital');
 const countryArea = document.querySelector('#countryArea');
 const countryPopulation = document.querySelector('#countryPopulation');
+const countryCurrency = document.querySelector('#countryCurrency');
 const countryBorders = document.querySelector('#countryBorders');
-
 const countryCarSide = document.querySelector('#countryCarSide');
 const countryCodes = document.querySelector('#countryCodes');
 
 // BUG -- ???????????????
 const countryMap = document.querySelector('#countryMap');
-
-
 const countryHeraldicImage = document.querySelector('.country__heraldic__image');
-
-
-
-
 
 
 
@@ -175,34 +218,41 @@ function getOneCountry(countryCode) {
 }
 
 
-
 function showOneCountry(country) {
-  headerCountryName.textContent = country.translations.fra.common;
+  headerCountryName.textContent = capitalizeString(country.translations.fra.common);
   countryFlag.src = country.flags.png;
 
-  countryCapital.textContent = country.capital;
+  countryCapital.textContent = country.capital ? country.capital : "—";
   countryArea.innerHTML = `${numberWithCommas(country.area)} km<sup>2</sup>`;
   countryPopulation.textContent = numberWithCommas(country.population);
 
-
-  let translatedBorders = country.borders || ['info indisponible'];
-  /*
-
-  let translatedBorders;
-  const codeBorders = country.borders;
-  if (codeBorders) {
-
-    translatedBorders = codeBorders.map(code => {
-      return (filteredData.find(item => item.cca3 === code)).translations.fra.common;
-    })
-
-  } else {
-    translatedBorders = ['-'];
+  // currency
+  let currencies = [];
+  let currenciesString;
+  for (entry in country.currencies) {
+    currencies.push(`${country.currencies[entry].name} (${country.currencies[entry].symbol})`);
   }
 
-  */
+  if (currencies.length > 1) {
+    currenciesString = currencies.join(' / ');
+  } else {
+    currenciesString = currencies.toString();
+  }
 
-  // console.log(translatedBorders);
+  countryCurrency.textContent = currenciesString;
+
+
+  // borders
+  let countryBorderCodes = country.borders;
+  let translatedBorders = [];
+
+  if (countryBorderCodes) {
+    translatedBorders = countryBorderCodes.map(code => {
+      return getCountryFromCca3(code);
+    })
+  } else {
+    translatedBorders = ['—'];
+  }
 
   countryBorders.textContent = translatedBorders.join(', ');
 
@@ -218,8 +268,9 @@ function showOneCountry(country) {
   countryNavContinent.textContent = currContinent;
 
   const accessibleCountries = filteredData.map(country => {
-    return `<li>
-    <span class="page2NavItem">${country.translations.fra.common}</span>
+    return `
+    <li>
+      <span class="page2NavItem">${country.translations.fra.common}</span>
     </li>`
   });
 
@@ -248,12 +299,8 @@ function resetCountry() {
   ];
 
   countryFields.forEach(field => field.innerHTML = '');
-
   countryHeraldicImage.src = '';
-
 }
-
-
 
 
 
@@ -262,10 +309,8 @@ const backButton = document.querySelector('#backButton');
 
 backButton.addEventListener('click', () => {
   resetCountry();
-
   page1.classList.remove('out');
   page2.classList.add('page--hidden');
-
 });
 
 
@@ -277,8 +322,6 @@ const searchFilters = document.querySelectorAll('input[type="checkbox"]');
 searchFilters.forEach(filter => filter.addEventListener('change', checkboxChange));
 
 function checkboxChange(e) {
-  // console.log(e.target.name);
-  // console.log(e.target.checked);
 
   switch (e.target.name) {
 

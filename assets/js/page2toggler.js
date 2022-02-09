@@ -2,6 +2,9 @@
 // const page2CountryList = document.querySelector('.page2__country__list');
 // déjà déclaré...
 
+
+/*
+
 const page2toggler = document.querySelector('.toggler--page2');
 
 page2toggler.addEventListener('click', (e) => {
@@ -20,4 +23,4 @@ page2toggler.addEventListener('click', (e) => {
 });
 
 
-
+*/

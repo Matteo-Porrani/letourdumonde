@@ -4,6 +4,8 @@ const wip = false;
 const continentsList = ['Europe', 'Afrique', 'Asie', 'Amériques', 'Océanie'];
 const continentsListEng = ['Europe', 'Africa', 'Asia', 'Americas', 'Oceania'];
 
+const longNameCountries = ["Territoire britannique de l'océan Indien", "Sainte-Hélène, Ascension et Tristan da Cunha"];
+
 // DOM elements for '.page1'
 const page1 = document.querySelector('.page1');
 const page2 = document.querySelector('.page2');
@@ -86,54 +88,44 @@ function refreshContinent(continentName) {
         });
 
       // console.log ONLY countries of selected continent
-      console.log(filteredData);
+      // console.log(filteredData);
 
       if (filteredData) {
         displayCountries(filteredData);
-
-        // A*A -- temporary code (wip page2)
-        if (wip) {
-          getOneCountry('FRA');
-          page2.classList.remove('page--hidden');
-          page1.classList.add('out');
-        }
       }
 
     });
 }
 
 
-const longNameCountries = ["Territoire britannique de l'océan Indien", "Sainte-Hélène, Ascension et Tristan da Cunha"];
+
 
 function displayCountries(countryList) {
 
   countryCount.textContent = countryList.length;
 
-
+  // fix long names
   countryList.forEach(country => {
 
     switch (country.translations.fra.common) {
-
       case "Territoire britannique de l'océan Indien":
         country.menuName = "Terr. Britanniques de l'O. Indien";
-        break; 
+        break;
       case "Sainte-Hélène, Ascension et Tristan da Cunha":
         country.menuName = "St-Hélène, Ascension & Tr. da Cunha";
-        break; 
+        break;
       case "Saint-Vincent-et-les-Grenadines":
         country.menuName = "St-Vincent-et-les-Grenadines";
-        break; 
+        break;
       case "Îles mineures éloignées des États-Unis":
         country.menuName = "Îles min. él. des États-Unis";
-        break; 
+        break;
       default:
         country.menuName = country.translations.fra.common;
         break;
     }
 
   });
-
-  // Saint-Vincent-et-les-Grenadines
 
 
   // FIXME ***
@@ -159,16 +151,17 @@ function displayCountries(countryList) {
       getOneCountry(this.dataset.code.toLowerCase());
 
       // ramène le scroll au top si la card du pays cliqué est très en bas dans le document
+
       window.scrollTo({
         top: 0,
         left: 0,
         behavior: 'smooth'
       });
 
+
       // NEW -- fly !
       fly();
 
-      page2.classList.remove('page--hidden');
       page1.classList.add('out');
 
     });
@@ -182,12 +175,90 @@ refreshContinent(currContinent);
 
 
 
+// T*T -- FLY
+
+const plane = document.querySelector('.plane');
+const planeShadow = document.querySelector('.plane__shadow');
+
+let pTop = window.innerHeight;
+let pLeft = 0;
+
+function fly() {
+
+  document.body.style.overflowY = "hidden";
+  document.body.classList.add('sky');
+
+
+  plane.style.display = 'block';
+  planeShadow.style.display = 'block';
+
+
+  // ouverture page 2
+  setTimeout(function () {
+    page1.classList.add('hidden');
+    page2.classList.remove('hidden');
+
+    setTimeout(function () {
+      page2.classList.remove('translated');
+    }, 10);
+  }, 500);
+
+
+  const timer = setInterval(function () {
+
+
+
+
+    if (pTop <= -100) {
+      clearInterval(timer);
+      console.log('landed!');
+
+      document.body.style.overflowY = "visible";
+
+
+
+      // prepares next fly
+      pTop = window.innerHeight;
+      pLeft = 0;
+      plane.style.left = `${pLeft}px`;
+      plane.style.top = `${pTop}px`;
+
+      planeShadow.style.left = `${pLeft + 40}px`;
+      planeShadow.style.top = `${pTop + 80}px`;
+
+      plane.style.display = 'none';
+      planeShadow.style.display = 'none';
+
+      return;
+    }
+
+    pLeft += 16;
+    pTop -= 16;
+
+    plane.style.left = `${pLeft}px`;
+    plane.style.top = `${pTop}px`;
+
+    planeShadow.style.left = `${pLeft + 40}px`;
+    planeShadow.style.top = `${pTop + 80}px`;
+
+  }, 15);
+
+}
+
+
+
+
+// T*T --
+
+
 
 
 
 
 // get DOM elements for '.page2'
-const countryNavContinent = document.querySelector('.country__nav__continent');
+// const countryNavContinent = document.querySelector('.country__nav__continent');
+
+
 const page2CountryList = document.querySelector('.page2__country__list');
 
 const headerCountryName = document.querySelector('#headerCountryName');
@@ -308,9 +379,20 @@ function resetCountry() {
 const backButton = document.querySelector('#backButton');
 
 backButton.addEventListener('click', () => {
-  resetCountry();
-  page1.classList.remove('out');
-  page2.classList.add('page--hidden');
+  document.body.classList.remove('sky');
+  page2.classList.add('translated');
+
+  setTimeout(function() {
+    page2.classList.add('hidden');
+    resetCountry();
+
+    page1.classList.remove('hidden');
+    setTimeout(function() {
+      page1.classList.remove('out');
+    }, 500);  
+  }, 500)
+
+
 });
 
 
@@ -339,3 +421,7 @@ function checkboxChange(e) {
 
   refreshContinent(currContinentEng);
 }
+
+
+
+

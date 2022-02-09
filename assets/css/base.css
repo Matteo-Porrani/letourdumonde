@@ -38,15 +38,12 @@ body {
   flex-direction: column;
   justify-content: space-between;
 
-  background-image: url('../images/background_sea.svg');
-  background-position: center;
-  background-size: cover;
-
-  background-repeat: no-repeat;
-
-  
   font-family: 'Inria Sans', sans-serif;
   scroll-behavior: smooth;
+
+  overflow-x: hidden;
+
+  transition: background-color 1s ease-in-out;
 }
 
 header {
@@ -81,9 +78,6 @@ footer {
 /* MAIN HTML ELEMENTS */
 /* ==================================================================================== */
 
-section {
-  border: var(--bck) solid steelblue;
-}
 
 h1,
 h2 {
@@ -124,12 +118,6 @@ ul {
 /* UTILITY CLASSES */
 /* ==================================================================================== */
 
-.container {
-  border: var(--bck) solid limegreen;
-  width: 96%;
-  /* max-width: 1080px; */
-  margin: 0 auto;
-}
 
 .d-flex {
   display: flex;
@@ -157,6 +145,53 @@ ul {
 .btn:hover {
   background: var(--c-hero);
   color: var(--c-lgt);
+}
+
+/* ==================================================================================== */
+/* DISPLAY STRUCTURE */
+/* ==================================================================================== */
+
+.display {
+  border: var(--bck) solid violet;
+  padding: 2rem 0;
+}
+
+.container {
+  border: var(--bck) solid forestgreen;
+  width: 92%;
+  /* max-width: 1080px; */
+  margin: 0 auto;
+}
+
+.page1 {
+  border: var(--bck) solid cyan;
+  transition: opacity .5s ease-in-out;
+}
+
+.page2 {
+  transition: all .7s ease-in-out;
+}
+
+.translated {
+  transform: translateX(80%);
+  opacity: 0;
+}
+
+.out {
+  opacity: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+
+/* background color change */
+
+body.sky {
+  
+  background: var(--c-sand);
 }
 
 

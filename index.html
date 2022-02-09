@@ -8,13 +8,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;700&display=swap" rel="stylesheet">
-
-
 
   <link href="https://fonts.googleapis.com/css2?family=Yesteryear&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inria+Sans:wght@300;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:wght@300;700&display=swap" rel="stylesheet">
 
   <!-- Phosphor Icons -->
   <script src="https://unpkg.com/phosphor-icons" defer></script>
@@ -28,7 +24,7 @@
   <title>le Tour du Monde</title>
 </head>
 
-<body>
+<body class="">
 
   <div class="plane">
     <img src="assets/images/airplane-tilt.svg" alt="">
@@ -52,19 +48,13 @@
   <main>
     <div class="display">
 
-      <!-- MK -- PAGE 1 -->
-      <div class="page1">
+      <div class="container">
 
-        <!-- A*A -- HERO -->
-        <section class="hero">
+        <!-- MK -- PAGE 1 -->
+        <div class="page1">
 
-          <div class="container">
-
-            <!-- CONTINENT HEADER -->
-            <div class="continent__header">
-              <h2 class="continent__name">Europe</h2>
-              <p class="country__count__parag"><span class="country__count"></span> pays</p>
-            </div>
+          <!-- A*A -- HERO -->
+          <article class="hero">
 
 
             <!-- HERO IMAGE -->
@@ -167,8 +157,11 @@
 
             </div>
 
-            <!-- NEW -- temporary form -->
 
+            <!-- CONTINENT HEADER -->
+            <div class="continent__header">
+              <h2 class="continent__name">Europe</h2>
+            </div>
 
 
 
@@ -185,49 +178,44 @@
               </p>
 
             </form>
-          </div>
-        </section>
 
-        <!-- A*A -- COUNTRIES -->
-        <section class="countries">
-          <div class="container">
+          </article>
 
-            <!-- <img src="assets/images/airplane-tilt.svg" alt=""> -->
 
-            <ul class="country__list--primary d-flex">
+          <!-- A*A -- COUNTRIES -->
+          <article class="countries">
 
-              <!-- A*A -- LOADER -->
-              <div class="loader__wrapper">
-                <div class="lds-ellipsis">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
+
+            <div>
+              <!-- pour faire fonctionner d:flex-->
+              <p class="country__count__parag"><span class="country__count"></span> pays</p>
+              <ul class="country__list--primary d-flex">
+
+                <!-- A*A -- LOADER -->
+                <div class="loader__wrapper">
+                  <div class="lds-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
                 </div>
-              </div>
 
-            </ul>
+              </ul>
+            </div>
 
-          </div>
-        </section>
+          </article>
 
-      </div> <!-- end of .page1 -->
+        </div> <!-- end of .page1 -->
 
-      <!-- MK -- PAGE 2 -->
-      <div class="page2 page--hidden">
-
-        <div class="container">
+        <!-- MK -- PAGE2 -->
+        <div class="page2 hidden translated">
 
           <div class="country__wrapper">
 
-            <div class="country__nav">
-              <a id="backButton" class="btn">
-                <i class="ph-caret-left"></i>
-                <span>Accueil</span>
-              </a>
-            </div>
 
             <!-- A*A -- ACCORDEON -->
+            <!--
             <div class="country__list--secondary">
 
               <div class="country__list__header--secondary">
@@ -236,73 +224,102 @@
               </div>
 
               <ul class="page2__country__list country__list--hidden">
-                <!-- generated content -->
               </ul>
 
             </div>
+            -->
 
             <div class="country__header">
-              <h2 id="headerCountryName"></h2>
-              <img id="countryFlag" class="country__flag" src="" alt="drapeau du pays">
+
+              <!-- retour à l'accueil -->
+              <article>
+                <div class="country__nav">
+                  <a id="backButton" class="btn">
+                    <i class="ph-caret-left"></i>
+                    <span>Accueil</span>
+                  </a>
+                </div>
+
+                <h2 id="headerCountryName"></h2>
+              </article>
+
+              <article>
+                <img id="countryFlag" class="country__flag" src="" alt="drapeau du pays">
+              </article>
+
             </div>
 
             <div class="country__info">
 
-              <i class="phos ph-bank"></i>
-              <small>capitale</small>
-              <p id="countryCapital"></p>
+              <article class="info__line">
+                <small><i class="phos phos-info ph-bank"></i>capitale</small>
+                <p id="countryCapital" class="info__info"></p>
+              </article>
 
-              <i class="phos ph-map-trifold"></i>
-              <small>superficie</small>
-              <p id="countryArea"></p>
+              <article class="info__line">
+                <small><i class="phos phos-info ph-map-trifold"></i>superficie</small>
+                <p id="countryArea" class="info__info"></p>
+              </article>
 
-              <i class="phos ph-users-three"></i>
-              <small>population</small>
-              <p id="countryPopulation"></p>
+              <article class="info__line">
+                <small><i class="phos phos-info ph-users-three"></i>population</small>
+                <p id="countryPopulation" class="info__info"></p>
+              </article>
 
-              <i class="phos ph-coins"></i>
-              <small>Monnaie</small>
-              <p id="countryCurrency"></p>
+              <article class="info__line">
+                <small><i class="phos phos-info ph-coins"></i>Monnaie</small>
+                <p id="countryCurrency" class="info__info"></p>
+              </article>
 
-              <i class="phos ph-flag-banner"></i>
-              <small>pays voisins</small>
-              <p id="countryBorders"></p>
+              <article class="info__line">
+                <small><i class="phos phos-info ph-flag-banner"></i>pays voisins</small>
+                <p id="countryBorders" class="info__info"></p>
+              </article>
 
-              <i class="phos ph-car-simple"></i>
-              <small>conduite à</small>
-              <p id="countryCarSide"></p>
+              <article class="info__line">
+                <small><i class="phos phos-info ph-car-simple"></i>conduite à</small>
+                <p id="countryCarSide" class="info__info"></p>
+              </article>
 
-              <i class="phos ph-barcode"></i>
-              <small>codes d'identification</small>
-              <p id="countryCodes"></p>
-
-            </div>
-
-            <div class="country__content--secondary">
-
-              <div class="country__heraldic">
-                <img id="countryCoatOfArms" class="country__heraldic__image" src=""></img>
-              </div>
-
-              <div class="country__promote__desc">
-                <p class="promote__desc__text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime accusantium rerum atque sit repellendus voluptatem voluptatum expedita, minima nobis? Alias vel iusto corrupti iste ratione sed soluta ut quaerat veniam.
-                  Tempore esse repellat maxime quos nisi, ab odio alias culpa nemo eveniet possimus. Vitae laboriosam qui quaerat illum sit voluptate accusantium asperiores tempora laborum, veniam pariatur sed, dicta ut nulla!
-                  Magnam reiciendis animi eius minus excepturi quos, cum laudantium eum temporibus modi molestias nam similique? Odit adipisci tempore earum expedita assumenda velit voluptatibus, quas inventore consectetur quibusdam saepe aliquid deserunt.
-                  Laboriosam quasi quas esse perspiciatis nemo vel. Exercitationem vel ipsum inventore id ad deleniti alias voluptates.
-                </p>
-              </div>
+              <article class="info__line">
+                <small><i class="phos phos-info ph-barcode"></i>codes d'identification</small>
+                <p id="countryCodes" class="info__info"></p>
+              </article>
 
             </div>
 
-          </div> <!-- end of country__wrapper -->
+
+
+
+
+            <div class="country__heraldic">
+              <img id="countryCoatOfArms" class="country__heraldic__image" src=""></img>
+            </div>
+
+            <div class="country__promote__desc">
+              <p class="promote__desc__text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime accusantium rerum atque sit
+                repellendus
+                voluptatem voluptatum expedita, minima nobis? Alias vel iusto corrupti iste ratione sed soluta ut
+                quaerat
+                veniam.
+                Tempore esse repellat maxime quos nisi, ab odio alias culpa nemo eveniet possimus. Vitae laboriosam
+                qui
+                quaerat illum sit voluptate accusantium asperiores tempora laborum, veniam pariatur sed, dicta ut
+                nulla!
+                Magnam reiciendis animi eius minus excepturi quos, cum laudantium eum temporibus modi molestias nam
+                similique.
+              </p>
+            </div>
+
+
+
+
+          </div>
 
         </div> <!-- end of container -->
 
-      </div> <!-- end of page2 -->
-
-    </div> <!-- end of display -->
-
+      </div> <!-- end of display -->
   </main>
 
   <!-- ############# NO FOOTER ############# -->
@@ -310,7 +327,6 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/map.js"></script>
   <script src="assets/js/page2toggler.js"></script>
-  <script src="assets/js/fly.js"></script>
 </body>
 
 </html>
